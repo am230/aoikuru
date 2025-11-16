@@ -7,6 +7,7 @@
     import board from "./img/board.png";
     import hint from "./img/hint.png";
     import { browser } from "$app/environment";
+    import { ChatPermissions } from "@omujs/chat";
 
     const omu = new Omu(LOADING_APP);
     const obs = OBSPlugin.create(omu);
@@ -24,6 +25,7 @@
             OmuPermissions.GENERATE_TOKEN_PERMISSION_ID,
             OmuPermissions.I18N_GET_LOCALES_PERMISSION_ID,
             OBSPermissions.OBS_SOURCE_CREATE_PERMISSION_ID,
+            ChatPermissions.CHAT_PERMISSION_ID,
         );
         omu.start();
     }
@@ -47,7 +49,7 @@
         <AssetButton
             asset={ASSET_APP}
             multiple={false}
-            permissions={["com.omuapps:chat", "ext:table/permission"]}
+            permissions={[ChatPermissions.CHAT_PERMISSION_ID, OmuPermissions.TABLE_PERMISSION_ID]}
         />
     </section>
     <h3>試しに投げてみる</h3>
