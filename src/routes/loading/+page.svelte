@@ -44,7 +44,11 @@
 <AppHeader app={LOADING_APP} />
 <main>
     <section class="asset">
-        <AssetButton asset={ASSET_APP} multiple={false} />
+        <AssetButton
+            asset={ASSET_APP}
+            multiple={false}
+            permissions={["com.omuapps:chat", "ext:table/permission"]}
+        />
     </section>
     <h3>試しに投げてみる</h3>
     <section>
