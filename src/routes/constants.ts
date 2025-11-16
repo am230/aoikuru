@@ -3,7 +3,7 @@ import type { AppMetadata } from "@omujs/omu";
 import type { LocalizedText } from '@omujs/omu/localization';
 
 export const NAMESPACE = 'io.github.am230'
-export const ORIGIN = dev ? 'http://localhost:5137' : `http://${NAMESPACE}`;
+export const ORIGIN = dev ? 'http://localhost:5137' : `https://${NAMESPACE}`;
 export const APP_INDEX = ORIGIN + '/apps.json';
 
 export function getUrl(path: string): string {
