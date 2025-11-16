@@ -8,7 +8,6 @@ export const APP_INDEX = ORIGIN + '/apps.json';
 
 export function getUrl(path: string): string {
     const url = new URL(path, ORIGIN);
-    url.pathname = url.pathname
     return url.href;
 }
 

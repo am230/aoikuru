@@ -6,7 +6,7 @@
         fetch("http://localhost:26423/index_install", {
             method: "POST",
             body: JSON.stringify({
-                index: getUrl(`${location.origin}/apps.json`),
+                index: getUrl(`/aoikuru/apps.json`),
                 id: "io.github.am230:aoikuru",
             }),
         });
