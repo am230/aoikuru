@@ -5,7 +5,7 @@ import { buildMetadata, getUrl, NAMESPACE } from '../constants';
 export const APP_ID = new Identifier(NAMESPACE, 'loading');
 
 export const LOADING_APP = new App(APP_ID, {
-    url: getUrl('/loading'),
+    url: getUrl('/aoikuru/loading'),
     metadata: buildMetadata({
         locale: 'ja',
         name: {
@@ -22,7 +22,7 @@ export const LOADING_APP = new App(APP_ID, {
     }),
 });
 export const ASSET_APP = new App(APP_ID.join('asset'), {
-    url: getUrl('/loading/asset'),
+    url: getUrl('/aoikuru/loading/asset'),
     parentId: LOADING_APP,
     metadata: buildMetadata({
         locale: 'ja',
