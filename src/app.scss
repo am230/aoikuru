@@ -1,0 +1,11 @@
+@import url('@fontsource/noto-sans-jp/500.css');
+@import url('@fontsource/noto-sans-jp/600.css');
+@import url('@fontsource/noto-sans-jp/700.css');
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    user-select: none;
+    font-family: 'Noto Sans JP', sans-serif;
+}
