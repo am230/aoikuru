@@ -29,18 +29,6 @@
         );
         omu.start();
     }
-
-    $: stateText = {
-        idle: "待機中",
-        idle_start: "待機開始",
-        throwing: "投げ中",
-        thrown: "投げ終わり",
-        catching: "キャッチ中",
-        eating: "食べ中",
-        throw_many: "たくさん投げる",
-        throw_many_hit: "たくさん投げる当たり",
-        throw_start: "投げ開始",
-    }[$state.type];
 </script>
 
 <AppHeader app={LOADING_APP} />
@@ -49,7 +37,10 @@
         <AssetButton
             asset={ASSET_APP}
             multiple={false}
-            permissions={[ChatPermissions.CHAT_PERMISSION_ID, OmuPermissions.TABLE_PERMISSION_ID]}
+            permissions={[
+                ChatPermissions.CHAT_PERMISSION_ID,
+                OmuPermissions.TABLE_PERMISSION_ID,
+            ]}
         />
     </section>
     <h3>試しに投げてみる</h3>
@@ -86,7 +77,10 @@
                 </Button>
             </h3>
             <code>
-                {stateText}
+                {{
+                    idle: "待機中",
+                    catching: "キャッチ中",
+                }[$state.type]}
             </code>
         </div>
     </section>
