@@ -21,17 +21,24 @@
 
     async function install() {
         installState = { type: "installing", hostname: location.hostname };
-        const resp = await fetch("http://localhost:26423/index_install", {
-            method: "POST",
-            body: JSON.stringify({
-                index: getUrl(`/aoikuru/apps.json`),
-                id: "io.github.am230:aoikuru",
-            }),
-        });
-        if (!resp.ok) {
-            installState = { type: "failed", message: resp.statusText };
-        } else {
-            installState = { type: "installed" };
+        try {
+            const resp = await fetch("http://localhost:26423/index_install", {
+                method: "POST",
+                body: JSON.stringify({
+                    index: getUrl(`/aoikuru/apps.json`),
+                    id: "io.github.am230:aoikuru",
+                }),
+            });
+            if (!resp.ok) {
+                installState = { type: "failed", message: resp.statusText };
+            } else {
+                installState = { type: "installed" };
+            }
+        } catch (e) {
+            installState = {
+                type: "failed",
+                message: "起動していない可能性があります",
+            };
         }
     }
 
