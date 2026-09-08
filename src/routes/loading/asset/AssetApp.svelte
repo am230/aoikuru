@@ -1,13 +1,13 @@
 <script lang="ts">
-    import { Chat, ChatEvents, Content, Models } from '@omujs/chat';
-    import type { Omu } from '@omujs/omu';
-    import { BROWSER } from 'esm-env';
-    import { FriesApp } from '../fries-app';
-    import type { ThrowData } from '../state';
-    import Avatar from './Avatar.svelte';
-    import Board from './Board.svelte';
-    import Fries from './Fries.svelte';
-    import bg from './img/bg.png';
+    import { Chat, ChatEvents, Content, Models } from "@omujs/chat";
+    import type { Omu } from "@omujs/omu";
+    import { BROWSER } from "esm-env";
+    import { FriesApp } from "../fries-app";
+    import type { ThrowData } from "../state";
+    import Avatar from "./Avatar.svelte";
+    import Board from "./Board.svelte";
+    import Fries from "./Fries.svelte";
+    import bg from "./img/bg.png";
 
     export let omu: Omu;
     const chat = Chat.create(omu);
@@ -17,11 +17,11 @@
     let queue: ThrowData[] = [];
 
     function processQueue() {
-        if ($state.type !== 'idle') return;
+        if ($state.type !== "idle") return;
         const data = queue.shift();
         if (!data) return;
         $state = {
-            type: 'catching',
+            type: "catching",
             start: performance.timeOrigin + performance.now(),
             data,
         };
@@ -33,10 +33,15 @@
         if (!message.content) return 0;
         let greasyOMetor = 0;
         for (const component of Content.walk(message.content)) {
-            if (component.type !== 'image') continue;
-            const { id } = component.data;
-            if (id === '🍟') {
-                greasyOMetor++;
+            if (component.type === "image") {
+                const { id } = component.data;
+                if (id === "🍟") {
+                    greasyOMetor++;
+                }
+            } else if (component.type === "text") {
+                if (component.data.includes("🍟")) {
+                    greasyOMetor++;
+                }
             }
         }
         return greasyOMetor;
@@ -48,7 +53,7 @@
         if (greasiness <= 0) return;
         const author = await chat.authors.get(message.authorId.key());
         queue.push({
-            thrower: author?.name || '',
+            thrower: author?.name ?? author?.metadata.screen_id ?? "",
             count: greasiness,
         });
         processQueue();
@@ -67,8 +72,8 @@
     if (BROWSER) {
         omu.start();
     }
-
 </script>
+
 <main>
     <img src={bg} alt="" />
     <Board title={$config.text} />
